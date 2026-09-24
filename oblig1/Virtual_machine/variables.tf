@@ -51,12 +51,12 @@ variable "floating_ip_pool" {
 }
 
 variable "volume_ids" {
-  description = "Volumes to attach: volume_ids[i] is attached to instance i (max one per instance)."
+  description = "Tilknyttede volumer: volume_ids[i] er tilknyttet instance i (mac 1 per instance)."
   type        = list(string)
   default     = []
 
   validation {
     condition     = length(var.volume_ids) <= var.instance_count
-    error_message = "volume_ids cannot contain more entries than instance_count."
+    error_message = "volume_ids kan ikke inneholder fler entitete enn instance_count."
   }
 }
