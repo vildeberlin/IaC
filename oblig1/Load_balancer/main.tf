@@ -13,12 +13,13 @@ resource "openstack_lb_listener_v2" "http" {
 
 resource "openstack_lb_pool_v2" "pool" {
   protocol    = var.protocol
-  lb_method   = "ROUND ROBIN"
+  lb_method   = "ROUND_ROBIN"
   listener_id = openstack_lb_listener_v2.http.id
 }
 
 resource "openstack_lb_member_v2" "frontend1" {
   pool_id       = openstack_lb_pool_v2.pool.id
-  address       = var.subnet
+  address       = var.member_address
   protocol_port = var.protocol_port
+  subnet_id     = var.member_subnet_id
 }

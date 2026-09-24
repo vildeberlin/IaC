@@ -45,3 +45,7 @@ resource "openstack_compute_instance_v2" "vm" {
     name = var.network
   }
 }
+
+resource "openstack_networking_secgroup_v2" "secgroup" {
+  name        = var.secgroup_name
+}

@@ -12,3 +12,7 @@ variable "attach_storage_to_vm" {
  type = bool 
  default = true
 }
+
+variable "instance_id" {
+  type = string
+}

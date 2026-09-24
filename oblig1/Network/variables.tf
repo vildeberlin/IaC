@@ -8,7 +8,7 @@ variable "network_subnet_name" {
 
 variable "network_subnet_cidr" {
   description = "CIDR for backend network"
-
+  type        = map(string)
 }
 
 variable "network_router_name" {
@@ -22,7 +22,7 @@ variable "ntnu_internal_network" {
 }
 
 # Dette er de subnettsene vi skal ha, en for frontend, en for backend og en for database
-variable "subnets" {
+variable "subnet" {
   description = "Liste over subnett"
   type        = map(string)
 }

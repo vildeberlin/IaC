@@ -16,3 +16,14 @@ Hva vi har gjort:
     - lagd tre subnets 
     - kobla alle de på ruter 
     - fiksa sånn at den skriver ut subnet id 
+
+
+Hvis vi vil fikse en siste ting: 
+    lage variables.tf i root 
+    legge variabler fra main til varables fil 
+    sånn at det er bedre 
+
+skriv i rapport: 
+    at vi har security group med tps
+    men vi har ikke ssh pga at vi ikke har fip :( 
+

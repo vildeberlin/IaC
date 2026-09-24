@@ -7,11 +7,11 @@ resource "openstack_networking_network_v2" "network" {
 
 //Subnett
 resource "openstack_networking_subnet_v2" "network" {
-  for_each = var.subnets          # for å få tre forskellige subnets, se variabels.tf
+  for_each = var.subnet          # for å få tre forskellige subnets, se variabels.tf
 
-  name        = var.network_subnet_name
+  name        = each.key
   network_id  = openstack_networking_network_v2.network.id
-  cidr        = var.network_subnet_cidr
+  cidr        = each.key
   ip_version  = 4
   enable_dhcp = true
   dns_nameservers = ["8.8.8.8", "1.1.1.1"] 

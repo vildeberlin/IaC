@@ -59,3 +59,22 @@ variable "security_rules" {
   }
 }
 
+variable "protocol" {
+  type = string
+  default = "TCP"
+}
+
+variable "port" {
+  type = number
+  default = 22
+}
+
+variable "cidr" {
+  type = number
+  default = "0.0.0.0/0"
+}
+
+variable "secgroup_name" {
+  description = "secgoup for vm"
+  type = string
+}

@@ -16,3 +16,19 @@ variable "flag" {
   type = bool
   default = true
 }
+
+variable "member_address" {
+  description = "IP-adressen til VM-en (f.eks. frontend) som skal balanseres"
+  type        = string
+}
+
+variable "member_subnet_id" {
+  description = "Subnett-ID medlemmet (VM-en) ligger i"
+  type        = string
+}
+
+variable "external_network_name" {
+  description = "Navn på det eksterne nettverket floating IP hentes fra"
+  type        = string
+  default     = "ntnu-internal"
+}
