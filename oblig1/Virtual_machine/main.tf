@@ -1,35 +1,47 @@
 
+data "cloudinit_config" "userdata" {
+  count         = var.template != "" ? 1 : 0
+  gzip          = true
+  base64_encode = true
 
-
-
-
-/*
-  data "openstack_compute_keypair_v2" "my_keypair" {
-    name = var.ssh_key_name
+  part {
+    filename     = "userdata"
+    content      = templatefile(var.template, {})
+    content_type = "text/x-shellscript"
   }
+}
 
-  //instance/vm
-  enerisk, samme burkes til å lag ebåde frontend og DB.check "name" {
-    Kalles to ganger fra root. 
+#Get the manually created keypair
+data "openstack_compute_keypair_v2" "my_keypair" {
+  name = var.ssh_key_name
+}
+
+data "openstack_networking_network_v2" "ntnu_internal" {
+  name = var.ntnu_internal_network
+}
+
+data "openstack_images_image_v2" "image" {
+  name        = var.distro
+  most_recent = true
+
+  properties = {
+    key = "value"
   }
+}
 
-  resource "openstack_compute_instance_v2" "frontend" {
-    name            = var.name
-    image_id        = var.vm-image_id
-    flavor_name     = var.vm-flavor_name
-    key_pair        = var.keypair_name
-    security_groups = var.security_group_ids
+data "openstack_compute_flavor_v2" "flavor" {
+  name = var.flavor
+}
 
-
-    network {
-          uuid = var.network_id
-    }
+# Her lages vm-en
+resource "openstack_compute_instance_v2" "vm" {
+  name            = var.name
+  image_id        = data.openstack_images_image_v2.image.id
+  flavor_id       = data.openstack_compute_flavor_v2.flavor.id
+  key_pair        = data.openstack_compute_keypair_v2.my_keypair.name
+  security_groups = [openstack_networking_secgroup_v2.secgroup.name, "default"]
+  user_data       = var.template == "" ? "" : data.cloudinit_config.userdata[0].rendered
+  network {
+    name = var.network
   }
-
-  resource "openstack_compute_volume_attach_v2" "attach" {
-    count       = var.attach_volume_id != null ? 1 : 0 //betyr: "lag denne koblingen bare hvis noen faktisk sendte inn et volum-ID"
-    instance_id = openstack_compute_instance_v2.vm.id
-    volume_id   = var.attach_volume_id
-  }
-
-*/
+}

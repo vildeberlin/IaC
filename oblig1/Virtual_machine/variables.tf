@@ -5,7 +5,6 @@ variable "template" {
   default     = ""
 }
 
-
 variable "name" {
   description = "Name of the instance"
   type        = string
@@ -37,10 +36,4 @@ variable "flavor" {
   description = "Size and feature set of the VM"
   type        = string
   default     = "gx1.1c1r"
-}
-
-variable "enable_fip" {
-  description = "Attach floating IP to VM"
-  type        = bool
-  default     = false
 }
