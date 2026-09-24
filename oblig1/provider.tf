@@ -9,9 +9,9 @@ terraform {
   }
 
   backend "kubernetes" {
-    secret_suffix = "lab04"
+    secret_suffix = "oblig1"
     namespace     = "iac"
-    config_path   = "./kube/config"
+    config_path   = "./kube_config.yaml"
 
   }
 }
