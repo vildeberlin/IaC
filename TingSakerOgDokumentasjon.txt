@@ -15,3 +15,4 @@ Hvis gul tekst:
 Hva vi har gjort: 
     - lagd tre subnets 
     - kobla alle de på ruter 
+    - fiksa sånn at den skriver ut subnet id 
