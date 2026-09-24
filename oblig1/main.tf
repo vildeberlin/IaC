@@ -5,6 +5,11 @@ module "Network" {
   network_subnet_name = "network-subnet"
   network_subnet_cidr = "10.0.1.0/24"
   network_router_name = "network"
+  subnet = {
+    frontend = "10.0.1.0/24"
+    backend  = "10.0.2.0/24"
+    database = "10.0.3.0/24"
+  }
 }
 
 module "Virtual_machine" {
@@ -28,4 +33,8 @@ module "Persistent_storage" {
   source = "./modules/Persistent_storage"
   volume_name = "vol"
   volume_size = 20
+}
+
+module "Load_balancer" {
+  
 }

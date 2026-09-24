@@ -25,10 +25,4 @@ variable "ntnu_internal_network" {
 variable "subnets" {
   description = "Liste over subnett"
   type        = map(string)
-
-  default = {
-    frontend = "10.0.1.0/24"
-    backend  = "10.0.2.0/24"
-    database = "10.0.3.0/24"
-  }
 }
