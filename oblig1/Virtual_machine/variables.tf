@@ -58,3 +58,11 @@ variable "security_rules" {
     }
   }
 }
+
+variable "lb_name" {
+  type = string
+}
+
+variable "vip_subnet_id" {
+  type = string
+}

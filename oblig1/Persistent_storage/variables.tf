@@ -4,4 +4,6 @@ variable "name" {
 
 variable "size_gb" {
   description = "Størrelsen på persistant storage"
+  type = number
+  default = 20
 }
