@@ -1,0 +1,7 @@
+Hvordan pushe i git: 
+    - git add .
+    - git commit -m "melding" 
+    - git push 
+
+Hvordan pulle i git: 
+    - git pull
