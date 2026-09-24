@@ -26,6 +26,8 @@ resource "openstack_networking_router_v2" "network" {
 
 //kobler subnett og ruter sammen
 resource "openstack_networking_router_interface_v2" "network" {
+  for_each = openstack_networking_subnet_v2.network  # kobler alle subnets til router
+
   router_id = openstack_networking_router_v2.network.id
-  subnet_id = openstack_networking_subnet_v2.network.id
+  subnet_id = each.value.id 
 }
