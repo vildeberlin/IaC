@@ -37,3 +37,24 @@ variable "flavor" {
   type        = string
   default     = "gx1.1c1r"
 }
+
+variable "security_rules" {
+  type = map(object({
+    port     = number
+    protocol = string
+    cidr     = string
+  }))
+
+  default = {
+    ssh = {
+      port     = 22
+      protocol = "tcp"
+      cidr     = "0.0.0.0/0"
+    }
+    http = {
+      port     = 80
+      protocol = "tcp"
+      cidr     = "0.0.0.0/0"
+    }
+  }
+}
