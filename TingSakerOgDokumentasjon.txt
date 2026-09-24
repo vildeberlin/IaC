@@ -5,3 +5,8 @@ Hvordan pushe i git:
 
 Hvordan pulle i git: 
     - git pull
+
+
+Hva vi har gjort: 
+    - lagd tre subnets 
+    - kobla alle de på ruter 
