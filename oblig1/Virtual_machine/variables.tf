@@ -1,62 +1,46 @@
-# Her definerer vi alle variabler, og dens type 
 
-variable "name" {
-  description = "Navn på vm, en frontend og en database"
-  type        = string
-}
-
-variable "instance_count" {
-  type    = number
-  default = 1
-}
-
-variable "image_name" {
-  type = string
-}
-
-variable "flavor_name" {
-  type = string
-}
-
-variable "key_pair" {
-  type = string
-}
-
-variable "network_id" {
-  type = string
-}
-
-variable "subnet_id" {
-  type = string
-}
-
-variable "security_group_ids" {
-  type = list(string)
-}
-
-variable "user_data" {
-  description = "Rendered cloud-init content."
+variable "template" {
+  description = "Input template for cloud-init"
   type        = string
   default     = ""
 }
 
-variable "assign_floating_ip" {
-  type    = bool
-  default = false
+
+variable "name" {
+  description = "Name of the instance"
+  type        = string
 }
 
-variable "floating_ip_pool" {
-  type    = string
-  default = null
+variable "ssh_key_name" {
+  description = "Public key accessible in SkyHiGh to bootstrap VM with"
+  type        = string
 }
 
-variable "volume_ids" {
-  description = "Tilknyttede volumer: volume_ids[i] er tilknyttet instance i (mac 1 per instance)."
-  type        = list(string)
-  default     = []
+variable "ntnu_internal_network" {
+  description = "Name of the external network in SkyHiGh"
+  type        = string
+  default     = "ntnu-internal"
+}
 
-  validation {
-    condition     = length(var.volume_ids) <= var.instance_count
-    error_message = "volume_ids kan ikke inneholder fler entitete enn instance_count."
-  }
+variable "network" {
+  description = "Network to attach the VM to"
+  type        = string
+}
+
+variable "distro" {
+  description = "Image name to use for the VM"
+  type        = string
+  default     = "Debian 13 (Trixie) stable amd64"
+}
+
+variable "flavor" {
+  description = "Size and feature set of the VM"
+  type        = string
+  default     = "gx1.1c1r"
+}
+
+variable "enable_fip" {
+  description = "Attach floating IP to VM"
+  type        = bool
+  default     = false
 }
