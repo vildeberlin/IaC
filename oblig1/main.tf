@@ -25,16 +25,16 @@ module "object_storage" {
   source = "./modules/Storage_container"
 
   storage_container_name         = "this"
-  storage_container_content_type = "application/octet-stream"
-  storage_container_versioning   = false
 }
 
 module "Persistent_storage" {
   source = "./modules/Persistent_storage"
-  volume_name = "vol"
-  volume_size = 20
+
+  name = "vol"
 }
 
 module "Load_balancer" {
-  
+  source = "./modules/Load_balancer"
+
+  lb_name = "lb"
 }

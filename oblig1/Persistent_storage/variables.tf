@@ -7,3 +7,8 @@ variable "size_gb" {
   type = number
   default = 20
 }
+
+variable "attach_storage_to_vm" {
+ type = bool 
+ default = true
+}
