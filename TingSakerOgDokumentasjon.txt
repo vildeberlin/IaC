@@ -6,6 +6,11 @@ Hvordan pushe i git:
 Hvordan pulle i git: 
     - git pull
 
+Hvis gul tekst: 
+    - git pull --rebase origin main
+    - git push origin main
+
+---
 
 Hva vi har gjort: 
     - lagd tre subnets 
