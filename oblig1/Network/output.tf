@@ -5,3 +5,6 @@ output "network_name" {
 output "subnet_name" {
   value = openstack_networking_subnet_v2.network.name
 }
+output "router_id" {
+  value = openstack_networking_router_v2.network.id
+}
