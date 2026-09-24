@@ -1,0 +1,11 @@
+#cloud-config
+# Role: ${role}
+package_update: true
+packages:
+  - nginx
+write_files:
+  - path: /var/www/html/health
+    content: "OK\n"
+runcmd:
+  - [ sh, -c, 'echo "<h1>TerraNova PoC - $(hostname)</h1>" > /var/www/html/index.html' ]
+  - systemctl enable --now nginx

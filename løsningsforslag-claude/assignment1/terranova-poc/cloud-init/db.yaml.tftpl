@@ -1,0 +1,10 @@
+#cloud-config
+package_update: true
+packages:
+  - postgresql
+runcmd:
+  - [ sh, -c, "sed -i \"s/^#\\?listen_addresses.*/listen_addresses = '*'/\" /etc/postgresql/*/main/postgresql.conf" ]
+  - [ sh, -c, "echo 'host all all ${allowed_cidr} scram-sha-256' >> /etc/postgresql/*/main/pg_hba.conf" ]
+  - systemctl restart postgresql
+  - [ sudo, -u, postgres, psql, -c, "CREATE USER ${db_user} WITH PASSWORD '${db_password}';" ]
+  - [ sudo, -u, postgres, psql, -c, "CREATE DATABASE ${db_name} OWNER ${db_user};" ]

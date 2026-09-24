@@ -1,0 +1,21 @@
+# Remote state. Rename to backend.tf and adapt, or pass values with:
+#   terraform init -backend-config=backend.hcl
+#
+# Example: S3-compatible object storage (Ceph RGW / OpenStack S3 API).
+# State is split per environment AND per layer via the key, e.g.
+#   <customer>/<env>/<layer>/terraform.tfstate
+terraform {
+  backend "s3" {
+    bucket = "terranova-tfstate"
+    key    = "customer-a/poc/core/terraform.tfstate"
+    region = "us-east-1" # dummy value, required by the backend
+
+    endpoints = { s3 = "https://s3.example.openstack.local" }
+
+    skip_credentials_validation = true
+    skip_region_validation      = true
+    skip_requesting_account_id  = true
+    skip_metadata_api_check     = true
+    use_path_style              = true
+  }
+}
