@@ -1,5 +1,7 @@
+# Her definerer vi alle variabler, og dens type 
+
 variable "name" {
-  description = "Name prefix; instances become <name>-1, <name>-2 ..."
+  description = "Navn på vm, en frontend og en database"
   type        = string
 }
 
