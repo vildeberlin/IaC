@@ -7,6 +7,8 @@ resource "openstack_networking_network_v2" "network" {
 
 //Subnett
 resource "openstack_networking_subnet_v2" "network" {
+  for_each = var.subnets          # for å få tre forskellige subnets, se variabels.tf
+
   name        = var.network_subnet_name
   network_id  = openstack_networking_network_v2.network.id
   cidr        = var.network_subnet_cidr
