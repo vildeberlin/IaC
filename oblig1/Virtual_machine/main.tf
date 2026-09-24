@@ -1,13 +1,17 @@
 
 
+
+
+
+/*
   data "openstack_compute_keypair_v2" "my_keypair" {
     name = var.ssh_key_name
   }
 
   //instance/vm
-  /*Generisk, samme burkes til å lag ebåde frontend og DB.check "name" {
+  enerisk, samme burkes til å lag ebåde frontend og DB.check "name" {
     Kalles to ganger fra root. 
-  }*/
+  }
 
   resource "openstack_compute_instance_v2" "frontend" {
     name            = var.name
@@ -28,4 +32,4 @@
     volume_id   = var.attach_volume_id
   }
 
-
+*/
