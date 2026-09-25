@@ -3,20 +3,17 @@ output "subnet_id" {
     value       = { for k, s in openstack_networking_subnet_v2.network : k => s.id }
   }
 
-/*skriver ut Subnet ID
-output "subnet_id" {
-  value = openstack_networking_subnet_v2.network.id
+output "network_id" {
+    value = openstack_networking_network_v2.network.id  
 }
 
-
 output "network_name" {
+  description = "Navn på nettverket"
   value = openstack_networking_network_v2.network.name
 }
 
-output "subnet_name" {
-  value = openstack_networking_subnet_v2.network.name
-}
 output "router_id" {
-  value = openstack_networking_router_v2.network.id
+  description = "ID til ruteren"
+  value       = openstack_networking_router_v2.network.id
 }
-*/
+

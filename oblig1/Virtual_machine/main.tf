@@ -33,10 +33,15 @@ data "openstack_compute_flavor_v2" "flavor" {
   name = var.flavor
 }
 
+resource "openstack_networking_secgroup_v2" "secgroup" {
+  name        = var.secgroup_name
+}
+
 
  # Port i riktig subnett (frontend eller database)
   resource "openstack_networking_port_v2" "port" {
     name               = "${var.name}-port"
+    network_id         = var.network_id
     security_group_ids = [openstack_networking_secgroup_v2.secgroup.id]
 
     fixed_ip {
@@ -56,21 +61,4 @@ data "openstack_compute_flavor_v2" "flavor" {
     }
   }
 
-/*
-# Her lages vm-en
-resource "openstack_compute_instance_v2" "vm" {
-  name            = var.name
-  image_id        = data.openstack_images_image_v2.image.id
-  flavor_id       = data.openstack_compute_flavor_v2.flavor.id
-  key_pair        = data.openstack_compute_keypair_v2.my_keypair.name
-  security_groups = [openstack_networking_secgroup_v2.secgroup.name, "default"]
-  user_data       = var.template == "" ? "" : data.cloudinit_config.userdata[0].rendered
-  network {
-    name = var.network
-  }
-}
 
-resource "openstack_networking_secgroup_v2" "secgroup" {
-  name        = var.secgroup_name
-}
-*/
