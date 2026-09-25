@@ -39,22 +39,9 @@ claude sier
      De største manglene, i prioritert rekkefølge
 
   1. Koden kjører ikke. Alle funksjonskravene og skjermbildene avhenger av dette, så det må fikses først.
-  2. Bare én VM, uten roller. Det trengs to modulkall (frontend og db), hver med sitt subnett, sin cloud-init-mal og sine sikkerhetsregler.
-  3. Rotmodulen mangler variables.tf, outputs.tf og .tfvars. Det svekker både gjenbrukbarheten og tre av leveransekravene.
+  3. Rotmodulen mangler .tfvars. 
   4. README-en er tom. Den teller direkte på vurderingskriteriet om dokumentasjon.
   5. Lastbalansereren kan ikke nås. Den mangler floating IP, health monitor og et flagg i rotmodulen.
   6. Leveransen følger ikke formatet: mappestruktur, zip-navn, og .DS_Store/oblig1.zip er sjekket inn i git.
 
 
-vil dette : Behold security_rules, men gjerne uten standardverdi, slik at hver rolle må angi sine egne regler., si å fjerne dette: default = {
-    ssh = {
-      port     = 22
-      protocol = "tcp"
-      cidr     = "0.0.0.0/0"
-    }
-    http = {
-      port     = 80
-      protocol = "tcp"
-      cidr     = "0.0.0.0/0"
-    }
-  }

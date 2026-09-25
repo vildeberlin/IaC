@@ -1,3 +1,23 @@
+  # Sikkerhetsregler per rolle, bygget fra variablene
+  locals {
+    ssh_rule = {
+      ssh = { port = 22, protocol = "tcp", cidr = var.ssh_allowed_cidr }
+    }
+
+    # SSH + åpne porter (HTTP/HTTPS) mot frontend
+    frontend_rules = merge(local.ssh_rule, {
+      for p in var.frontend_public_ports :
+      "port-${p}" => { port = p, protocol = "tcp", cidr = "0.0.0.0/0" }
+    })
+
+    # SSH + databaseport, kun fra frontend- og backend-subnettet
+    db_rules = merge(local.ssh_rule, {
+      for layer in ["frontend", "backend"] :
+      "db-from-${layer}" => { port = var.db_port, protocol = "tcp", cidr = var.subnet_cidrs[layer] }
+    })
+  }
+
+
 module "Network" {
     source = "./Network"
 
