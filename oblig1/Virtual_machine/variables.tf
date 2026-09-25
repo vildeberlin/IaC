@@ -21,10 +21,22 @@ variable "ntnu_internal_network" {
   default     = "ntnu-internal"
 }
 
+/*
 variable "network" {
   description = "Network to attach the VM to"
   type        = string
 }
+*/
+
+  variable "network_id" {
+    description = "ID til nettverket VM-en skal kobles til"
+    type        = string
+  }
+  
+  variable "subnet_id" {
+    description = "ID til subnettet VM-en skal ligge i"
+    type        = string
+  }
 
 variable "distro" {
   description = "Image name to use for the VM"
@@ -59,6 +71,7 @@ variable "security_rules" {
   }
 }
 
+/*
 variable "protocol" {
   type = string
   default = "TCP"
@@ -69,10 +82,11 @@ variable "port" {
   default = 22
 }
 
+
 variable "cidr" {
   type = number
   default = "0.0.0.0/0"
-}
+}*/
 
 variable "secgroup_name" {
   description = "secgoup for vm"

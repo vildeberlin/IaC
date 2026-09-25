@@ -44,3 +44,17 @@ claude sier
   4. README-en er tom. Den teller direkte på vurderingskriteriet om dokumentasjon.
   5. Lastbalansereren kan ikke nås. Den mangler floating IP, health monitor og et flagg i rotmodulen.
   6. Leveransen følger ikke formatet: mappestruktur, zip-navn, og .DS_Store/oblig1.zip er sjekket inn i git.
+
+
+vil dette : Behold security_rules, men gjerne uten standardverdi, slik at hver rolle må angi sine egne regler., si å fjerne dette: default = {
+    ssh = {
+      port     = 22
+      protocol = "tcp"
+      cidr     = "0.0.0.0/0"
+    }
+    http = {
+      port     = 80
+      protocol = "tcp"
+      cidr     = "0.0.0.0/0"
+    }
+  }
