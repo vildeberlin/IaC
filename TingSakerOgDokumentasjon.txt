@@ -27,3 +27,20 @@ skriv i rapport:
     at vi har security group med tps
     men vi har ikke ssh pga at vi ikke har fip :( 
 
+
+Output:
+    Legger til en output fil i main. Grunden er at de outputtene som er inne 
+    i de ulike mappene vill ikke skrives ut oppover i stukturen om du ksjønner hva jeg mener. 
+    Om man kjører alt fra root vil derfor denne outputten ikke komme opp, men den kommer kunn opp 
+    om man kjører inne i mappene. 
+
+
+claude sier 
+     De største manglene, i prioritert rekkefølge
+
+  1. Koden kjører ikke. Alle funksjonskravene og skjermbildene avhenger av dette, så det må fikses først.
+  2. Bare én VM, uten roller. Det trengs to modulkall (frontend og db), hver med sitt subnett, sin cloud-init-mal og sine sikkerhetsregler.
+  3. Rotmodulen mangler variables.tf, outputs.tf og .tfvars. Det svekker både gjenbrukbarheten og tre av leveransekravene.
+  4. README-en er tom. Den teller direkte på vurderingskriteriet om dokumentasjon.
+  5. Lastbalansereren kan ikke nås. Den mangler floating IP, health monitor og et flagg i rotmodulen.
+  6. Leveransen følger ikke formatet: mappestruktur, zip-navn, og .DS_Store/oblig1.zip er sjekket inn i git.

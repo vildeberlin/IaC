@@ -1,0 +1,83 @@
+Infrastructure as Code (IaC for a Consultancy Firm)
+Objective
+The objective in this assignment is to develop a reusable Terraform/OpenTofu project which uses configurable modules to provision a set of resources within a OpenStack environment. This project can be used as a foundation to develop similar infrastructure for other customers of the consultancy firm. 
+
+Use-case Scenario
+As a Junior consultant at the firm TerraNova, a startup working with different customers who run a wide variety of workloads on your private Openstack installation. You have been tasked to create a basic set of templates that can set up a basis for these workloads that can easily be extended and adapted as needed to the application that should run on top. 
+
+Infrastructure components
+The following infrastructure components must be configured in the solution:
+
+Network should follow standard 3 layer architecture (frontent/public, backend, database) 
+Each project should consist of at least one frontend webserver and a database backend
+All instances should use a configurable startup (cloud-init) script. 
+Enable load balancing with a flag with configuration options for service to be load balanced. 
+Set up at least one storage container that can be attached to services and used as needed.
+Additional requirements
+README.md file 
+
+Document in the root of the repo how to initialize a new configuration using Terraform/OpenTofu commands. Also document how Terraform plan/apply works as well as destroy can be used for the project. 
+
+Variables and Outputs
+
+Use input variables to make configurations as flexible as possible. The following parameters should be implemented as you see fit:
+Network naming
+IP Ranges for subnets
+Naming of all resources in network including load balancing
+Virtual machine names, flavors and image configuration
+Security group configuration
+Module names should reflect their functionality
+Use output variables to expose data as needed and make the solution flexible. Examples of output that should be implemented
+Subnet IDs
+VM IDs
+IPs of VMs
+LB Endpoints to connect to for given service
+Persistent storage volume name/id
+Storage Containers names
+Modules
+
+The solution MUST use modules, with the following suggested modules
+
+Network module - Create network configuration and relevant resources
+Storage container module - Create storage container with relevant resources and configuration
+Virtual machine module - Bootstrapping of virtual machines according to role with relevant configuration
+Persistent storage module - Make persistent storage and attach it during creation of virtual machines. 
+Root module
+
+The root module should implement a PoC with the following configuration:
+
+Network with 3 subnets 
+At least one DB VM bootstrapped and ready for configuration (see below)
+At least one Frontend VM boostrapped and ready for configuration (see below)
+Relevant security group giving SSH access into VMs and opens access to other relevant ports (HTTP/HTTPS/DB ports)
+Option to use load balancer endpoint for service like HTTP/HTTPS
+Option to attach persistent storage when defining new VMs
+State stored in remote state storage and split according to best practices. 
+It is expected to try to install some basic applications using either cloud-init or similar tools on VMs. For frontend, this could be Apache or NGINX to make the LB healthchecks to be verified. No SSL configuration is required. 
+
+The same should be done on the DB side with something like MySQL or PostgreSQL. DBs does not have to be put behind a LB and no SSL configuration is required. 
+
+Deliverables
+Upload your files as a .zip file with the following naming scheme:
+
+<ntnu-username>-assignment1.zip -> jornskj-assignment1.zip for me.
+
+The folder structure should also be <ntnu-username>/assignment1/<root-module> containing all files and subfolders as needed. 
+
+The reason for this structure is to streamline censorship and display of text files in text editor like VS Code. 
+
+Terraform configuration
+
+Root module with all submodules
+A README.md file explaining the following:
+Purpose of each module
+How to provision the solution including example of terraform configuration options if needed
+Any prerequisites or dependencies for the solution
+A sample .tfvar file containing values for all required input variables for PoC
+Output screenshot showing successful creation of the PoC
+Output screenshot showing successful destruction of the PoC 
+Evaluation Criteria
+Code quality
+Functionality
+Documentation on chosen setup 
+Reusability 
