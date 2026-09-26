@@ -71,6 +71,12 @@ variable "security_rules" {
   }
 }
 
+variable "assign_floating_ip" {
+    description = "Gi VM-en en floating IP fra det eksterne nettverket"
+    type        = bool
+    default     = false
+}
+
 /*
 variable "protocol" {
   type = string

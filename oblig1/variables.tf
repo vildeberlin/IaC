@@ -138,6 +138,7 @@ variable "lb_protocol" {
 variable "lb_port" {
     description = "Porten tjenesten lytter på"
     type        = number
+    default     = 80
 }
 
 // Persistent storage
@@ -168,3 +169,11 @@ variable "storage_container_name" {
     type        = string
     default     = "terranova-container"
 }   
+
+
+// Load balancer 
+ variable "lb_health_check_path" {
+    description = "Stien lastbalansereren bruker til helsesjekk"
+    type        = string
+    default     = "/"
+}

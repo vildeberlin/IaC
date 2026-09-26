@@ -13,7 +13,7 @@
     # SSH + databaseport, kun fra frontend- og backend-subnettet
     db_rules = merge(local.ssh_rule, {
       for layer in ["frontend", "backend"] :
-      "db-from-${layer}" => { port = var.db_port, protocol = "tcp", cidr = var.subnet_cidrs[layer] }
+      "db-from-${layer}" => { port = var.db_port, protocol = "tcp", cidr = var.subnet_cidr[layer] }
     })
   }
 
@@ -23,9 +23,11 @@ module "Network" {
 
     network_name          = var.network_name
     network_subnet_name   = "${var.network_name}-subnet"
-    network_subnet_cidr   = var.subnet_cidrs
+    network_subnet_cidr   = var.subnet_cidr
     network_router_name   = var.router_name
-    subnet                = var.subnet_cidrs
+    subnet                = var.subnet_cidr
+
+  
     ntnu_internal_network = var.external_network_name
   }
 

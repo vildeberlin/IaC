@@ -45,3 +45,4 @@ claude sier
   6. Leveransen følger ikke formatet: mappestruktur, zip-navn, og .DS_Store/oblig1.zip er sjekket inn i git.
 
 
+jeg vil bruke id og cider ikke ids og ciders 

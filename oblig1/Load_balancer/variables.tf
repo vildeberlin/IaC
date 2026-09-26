@@ -1,18 +1,41 @@
-output "lb_id" {
-    description = "ID til lastbalansereren (null hvis av)"
+
+  variable "lb_name" {
+    type = string
   }
-  
-  output "lb_vip_address" {
-    description = "Intern VIP-adresse (null hvis av)"
-    value       = one(openstack_lb_loadbalancer_v2.lb[*].vip_address)
+
+  variable "protocol" {
+    type    = string
+    default = "HTTP"
   }
-  
-  output "lb_floating_ip" {
-    description = "Ekstern IP til lastbalansereren (null hvis av)"
-    value       = one(openstack_networking_floatingip_v2.lb[*].address)
+
+  variable "protocol_port" {
+    type    = number
+    default = 80
   }
-  
-  output "lb_endpoint" {
-    description = "URL til tjenesten bak lastbalansereren (null hvis av)"
-    value       = var.flag ? "${lower(var.protocol)}://${openstack_networking_floatingip_v2.lb[0].address}:${var.protocol_port}" : null
+
+  variable "flag" {
+    type    = bool
+    default = true
   }
+
+  variable "member_address" {
+    description = "IP-adressen til VM-en (f.eks. frontend) som skal balanseres"
+    type        = string
+  }
+
+  variable "member_subnet_id" {
+    description = "Subnett-ID medlemmet (VM-en) ligger i"
+    type        = string
+  }
+
+variable "external_network_name" {
+    description = "Navn på det eksterne nettverket floating IP hentes fra"
+    type        = string
+    default     = "ntnu-internal"
+}
+
+variable "health_check_path" {
+    description = "Stien health monitor sjekker (kun HTTP/HTTPS)"
+    type        = string
+    default     = "/"
+}
